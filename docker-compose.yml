@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+    http-ambassador:
+        image: jnovack/autossh
+        container_name: http-ambassador
+        env_file: 
+            - .env
+        environment:
+            - SSH_TARGET_HOST=${HTTP_TARGET_HOST}
+            - SSH_TARGET_PORT=80
+            - SSH_BIND_IP=0.0.0.0
+            - SSH_TUNNEL_PORT=8080
+            - SSH_MODE=-L
+        restart: always
+        ports: 
+            - "8080:8080"
+        volumes:
+            - ${SSH_KEY_LOCATION}:/id_rsa
+
+    imap-ambassador:
+        image: jnovack/autossh
+        container_name: imap-ambassador
+        env_file: 
+            - .env
+        environment:
+            - SSH_TARGET_HOST=${MAIL_TARGET_HOST}
+            - SSH_TARGET_PORT=993
+            - SSH_BIND_IP=0.0.0.0
+            - SSH_TUNNEL_PORT=993
+            - SSH_MODE=-L
+        restart: always
+        volumes:
+            - ${SSH_KEY_LOCATION}:/id_rsa
+
+    smtp-ambassador:
+        image: jnovack/autossh
+        container_name: smtp-ambassador
+        env_file: 
+            - .env
+        environment:
+            - SSH_TARGET_HOST=${MAIL_TARGET_HOST}
+            - SSH_TARGET_PORT=465
+            - SSH_BIND_IP=0.0.0.0
+            - SSH_TUNNEL_PORT=465
+            - SSH_MODE=-L
+        restart: always
+        volumes:
+            - ${SSH_KEY_LOCATION}:/id_rsa
+
+    mail-client:
+        image: hardware/rainloop
+        container_name: rainloop
+        ports:
+            - "8888:8888"
+        volumes:
+            - ./docker/rainloop/data/:/rainloop/data
