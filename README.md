@@ -10,10 +10,12 @@ webメールクライアントを使いたいていう動機。
 `docker-compose down`で停止。
 
 ## Env
-docker-composeが動く。
-.envファイルを編集し、接続する$remote$と$target$を設定する。
+- docker-compose version 1.28.5, build c4eb3a1f
+- Docker on WSL2
+- chrome
 
 ## Settings
+.envファイルを編集し、接続する$remote$と$target$を設定する。
 
 初回起動時は、 http://localhost:8888/?/admin にアクセス、初期設定をテキトウに行う。(user:admin, password:12345)
 - ドメイン->ドメインを追加から、新しいドメインを登録する。
