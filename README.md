@@ -16,6 +16,7 @@ webメールクライアントを使いたいていう動機。
 
 ## Settings
 .envファイルを編集し、接続する$remote$と$target$を設定する。
+(.env.sampleを参考にいい感じにする。)
 
 初回起動時は、 http://localhost:8888/?/admin にアクセス、初期設定をテキトウに行う。(user:admin, password:12345)
 - ドメイン->ドメインを追加から、新しいドメインを登録する。
