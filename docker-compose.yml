@@ -14,7 +14,7 @@ services:
             - SSH_MODE=-L
         restart: always
         ports: 
-            - "8080:8080"
+            - "${HTTP_FORWARD_PORT}:8080"
         volumes:
             - ${SSH_KEY_LOCATION}:/id_rsa
 
@@ -52,6 +52,6 @@ services:
         image: hardware/rainloop
         container_name: rainloop
         ports:
-            - "8888:8888"
+            - "${MAIL_FORWARD_PORT}:8888"
         volumes:
             - ./docker/rainloop/data/:/rainloop/data
