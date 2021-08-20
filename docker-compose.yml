@@ -54,4 +54,4 @@ services:
         ports:
             - "${MAIL_FORWARD_PORT}:8888"
         volumes:
-            - ./docker/rainloop/data/:/rainloop/data
+            - ./docker/rainloop/data:/rainloop/data
