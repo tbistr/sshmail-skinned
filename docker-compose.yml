@@ -53,5 +53,6 @@ services:
         container_name: rainloop
         ports:
             - "${MAIL_FORWARD_PORT}:8888"
+        restart: always
         volumes:
             - ./docker/rainloop/data:/rainloop/data
